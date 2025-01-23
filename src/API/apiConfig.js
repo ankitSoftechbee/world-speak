@@ -1,7 +1,9 @@
 const key = import.meta.env.VITE_API_URL;
 
 export const authAPIConfig = {
-    login: key + '/api/Authentication/token'
+    login: key + '/api/Authentication/token',
+    checkSponsor: key + '/api/Authentication/ChecKId',
+    signup:key+'/api/Authentication/SignUp'
 }
 export const dashboardAPIConfig = {
     dashboard: key + '/Dashboard'

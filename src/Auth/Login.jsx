@@ -5,6 +5,7 @@ import { USDTContract } from "../lib/constant";
 import Web3 from "web3";
 import { authAPIConfig } from "../API/apiConfig";
 import axios from "axios";
+import { useFormik } from "formik";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -42,7 +43,7 @@ const Login = () => {
                     walletAddress: accounts[0],
                     balance: usdtBalance.toString() / 1e18,
                 };
-                console.log(cloneData)
+                console.log(accounts[0])
                 setDepositData(cloneData);
                 toast.success("Metamask connected");
             } else {
@@ -57,6 +58,7 @@ const Login = () => {
     };
     const handleAutoLogin = () => {
         if (depositData.walletAddress) {
+            console.log(depositData)
             axios.post(authAPIConfig.login, {
                 "walletaddress": depositData.walletAddress
             }, {
@@ -79,6 +81,21 @@ const Login = () => {
         }
 
     }
+
+    const handleSubmit=async(values)=>{
+        if(values.viewId!==''){
+
+        } else{
+            toast.error('Please enter view id');
+        }
+    }
+
+    const formik=useFormik({
+        initialValues:{
+            viewId:""
+        },
+        onSubmit:handleSubmit
+    })
 
     return <div className="login-background h-screen">
         <div className="grid grid-cols-12 h-full">
@@ -119,35 +136,19 @@ const Login = () => {
                                     <div
                                         className="block cursor-pointer mb-2 text-left text-sm font-medium text-gray-700"
                                     >
-                                        Username
+                                        View ID
                                     </div>
                                     <input
                                         type="text"
-                                        id="username"
-                                        placeholder="Your full name"
+                                        id="viewId"
+                                    placeholder="enter view id"
                                         className="w-full p-3 text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300"
                                     />
                                 </div>
-
-                                {/* Password Field */}
-                                <div className="mb-4">
-                                    <div
-                                        className="block cursor-pointer mb-2 text-left text-sm font-medium text-gray-700"
-                                    >
-                                        Password
-                                    </div>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        placeholder="Your password"
-                                        className="w-full p-3 text-sm border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300"
-                                    />
-                                </div>
-
 
                                 {/* Submit Button */}
                                 <button
-                                    type="submit"
+                                    onClick={formik.handleSubmit}
                                     className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                                     Login

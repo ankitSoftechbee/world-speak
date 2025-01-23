@@ -16,6 +16,7 @@
     "@mui/material": "^6.4.0",
     "@mui/x-charts": "^7.23.6",
     "axios": "^1.7.9",
+    "formik": "^2.4.6",
     "lodash": "^4.17.21",
     "lucide-react": "^0.473.0",
     "react": "^18.3.1",
@@ -27,7 +28,8 @@
     "react-router-dom": "^7.1.1",
     "recharts": "^2.15.0",
     "swiper": "^11.2.1",
-    "web3": "^4.16.0"
+    "web3": "^4.16.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
